@@ -129,3 +129,55 @@ function awayTeamName() {
 }
 
 console.log(awayTeamName());
+
+function numPointsScored (playerName) {
+    let object = gameObject();
+    let players = {...object.home.players, ...object.away.players};
+    return players[playerName].points;
+}
+
+function shoeSize (playerName) {
+    let object = gameObject();
+    let players = {...object.home.players, ...object.away.players};
+    return players[playerName].shoe;
+}
+
+function teamColors (teamName) {
+    return gameObject().home.teamName === teamName ? gameObject().home.colors : gameObject().away.colors;
+}
+
+function teamNames () {
+    return [gameObject().home.teamName, gameObject().away.teamName];
+}
+
+function playerNumbers (teamName) {
+    let object = gameObject();
+    let teamObj = object.home.teamName === teamName ? object.home : object.away;
+    let players = teamObj.players;
+    let playerNumbers = [];
+    for (let player in players) {
+        playerNumbers.push(players[player].number);
+    }
+    return playerNumbers;
+}
+
+function playerStats (playername) {
+    let object = gameObject();
+    let players = {...object.home.players, ...object.away.players};
+    return players[playername];
+}
+
+
+function mostPointsScored () {
+    let object = gameObject();
+    let players = {...object.home.players, ...object.away.players};
+    let maxPoints = 0;
+    let topScorer = '';
+    for (let player in players) {
+        if (players[player].points > maxPoints) {
+            maxPoints = players[player].points;
+            topScorer = player;
+        }
+    }
+    return topScorer;
+}
